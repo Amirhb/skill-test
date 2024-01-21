@@ -10,6 +10,15 @@ class WalletController {
         }
     }
 
+    getTokenPrice = async (req, res, next) => {
+        try {
+            const result = await WalletService.getTokenPrice(req.query.symbol);
+            res.send(result)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     createWallet = async (req, res, next) => {
         try {
             const result = await WalletService.createWallet(req.currentUser.id, req.body.keyphrase, req.body.locale || "En");

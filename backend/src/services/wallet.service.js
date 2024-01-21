@@ -212,7 +212,13 @@ class WalletService {
             return {response:true, message:"Success!", data:data}
         } else {
             return {response:true, message:"Success!", data:tokenList};
-        } 
+        }
+    }
+
+    static async getTokenPrice(symbol) {
+        const result = await new Wallet().getSingleTokenPrice(symbol);
+
+        return {response:true, message:"Success!", data:result};
     }
 
     static async getAssets(rawData, userId) {

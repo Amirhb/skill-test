@@ -6,7 +6,7 @@ const auth = require("../../middleware/auth.middleware");
 const Role = require('../../utils/userRoles.utils');
 const awaitHandlerFactory = require('../../middleware/awaitHandlerFactory.middleware');
 const {
-    createWalletSchema, 
+    createWalletSchema,
     accessWalletWithPrivateKeySchema,
     accessWalletWithKeyPhraseSchema,
     addTokenSchema,
@@ -19,6 +19,7 @@ const {
 } = require('../../middleware/validators/walletValidator.middleware');
 
 router.get('/gettoptokens', awaitHandlerFactory(WalletController.getTopTokens));
+router.get('/gettokenprice', awaitHandlerFactory(WalletController.getTokenPrice));
 router.post('/create', auth(), createWalletSchema, awaitHandlerFactory(WalletController.createWallet));
 router.post('/access/privatekey', auth(), accessWalletWithPrivateKeySchema, awaitHandlerFactory(WalletController.accessWalletByPrivateKey));
 router.post('/access/keyphrase', auth(), accessWalletWithKeyPhraseSchema, awaitHandlerFactory(WalletController.accessWalletWithKeyphrase));
