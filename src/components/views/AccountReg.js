@@ -39,7 +39,7 @@ function AccountReg(props) {
       email: email,
       locale: (localStorage.getItem('locale') || "Mn")
     }).then(response=>{
-      if(response.data.response){
+      if(response.data){
         openNotification(t('Success'),t("E-mail sent successfully"),true,false)
         setMessage({style:'text-green-500',val:1,data:t("E-mail successfully verified!")})
 
@@ -51,7 +51,7 @@ function AccountReg(props) {
     });
   }
   const register=()=>{
-    
+
            form.validateFields()
             .then((values) => {
               console.log("validateFile")

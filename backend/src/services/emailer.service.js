@@ -10,22 +10,22 @@ module.exports = {
     deliverEmail: function (dest, subject, body) {
         var transport = nodemailer.createTransport({
             service: process.env.EMAIL_SERVICE,
-            //host: process.env.EMAIL_HOST,
-            //port: Number(process.env.EMAIL_PORT),
+            host: process.env.EMAIL_HOST,
+            port: 465,
+            secure: true,
             auth: {
-                //user: process.env.EMAIL_USER,
                 user: process.env.EMAIL,
-                pass: process.env.EMAIL_PWD
+                pass: process.env.APP_PASSWORD
             }
         });
-    
+
         var mailOptions = {
             from: process.env.EMAIL,
             to: dest,
             subject: subject,
             text: body
         };
-    
+
         transport.sendMail(mailOptions, function(error, info){
             if (error) {
                 console.log(error);
@@ -33,5 +33,5 @@ module.exports = {
                 console.log('Email sent: ' + info.response);
             }
         });
-    }   
+    }
 }
